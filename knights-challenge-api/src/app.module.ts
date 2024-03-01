@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { KnightsModule } from './knights/knights.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { knightSchema } from './mongo/schemas/knight.schema';
 
 @Module({
   imports: [KnightsModule,
-    MongooseModule.forRoot('mongodb://localhost/knights')
+    
   ],
   controllers: [],
   providers: [],

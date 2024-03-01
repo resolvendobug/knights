@@ -6,7 +6,9 @@ import { AttributeKey } from "./attribute.enum";
 import { ApiProperty } from "@nestjs/swagger";
 
 
-export class KnightsDto {
+export class KnightDto {
+
+    _id?: string;
 
     @IsNotEmpty()
     @IsString()

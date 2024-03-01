@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+import { Schema,Document } from "mongoose";
 
 export interface Knight extends Document {
-    readonly _id: mongoose.Schema.Types.ObjectId; 
+    readonly _id: Schema.Types.ObjectId; 
     readonly name: string;
-    readonly nickname: number;
+    readonly nickname: string;
     readonly birthday: Date;
-    readonly weapon: object;
+    readonly weapons: object[];
     readonly attributes: object;
     readonly keyAttribute: string;
     readonly createdAt: Date;

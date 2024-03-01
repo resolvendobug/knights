@@ -6,7 +6,7 @@ export const knightSchema = new Schema({
     name: String,
     nickname: String,
     birthday: Date,
-    weapon: [WeaponSchema],
+    weapons: [WeaponSchema],
     attributes: AttributesSchema,
     keyAttribute: String, 
     createdAt: { type: Date, default: Date.now },
