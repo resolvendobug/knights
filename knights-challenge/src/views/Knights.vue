@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="main-container">
     <h1>Knights</h1>
     <AppTable />
   </div>

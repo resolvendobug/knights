@@ -22,7 +22,7 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 30px;
+    
   }
   #nav #logo_url{
     margin: auto;
