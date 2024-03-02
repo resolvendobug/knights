@@ -1,26 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+  <Navbar :logo="logo_src" :alt="app_name" />
+  <router-view/>
+  <AppFooter />
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Navbar from './components/NavBar.vue';
+import AppFooter from './components/Footer.vue';
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    Navbar,
+    AppFooter,
+  },
+  data(){
+    return{
+      logo_src: '/img/logo2.png',
+      app_name: 'Knights Challenge'
+    }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica';
+  
+ }
+
+ .main-container{
+  margin:50px;
+  min-height: 250px;
+ }
+
+ h1{
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  font-size: 42px;
+  margin-bottom: 30px;
+  color: #222;
+ }
 </style>
