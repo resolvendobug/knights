@@ -4,9 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { knightSchema } from './mongo/schemas/knight.schema';
 
 @Module({
-  imports: [KnightsModule,
-    
-  ],
+  imports: [KnightsModule],
   controllers: [],
   providers: [],
 })

@@ -10,6 +10,6 @@ export const knightSchema = new Schema({
     attributes: AttributesSchema,
     keyAttribute: String, 
     createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
-
+    updatedAt: { type: Date, default: Date.now },
+    isHeroes: { type: Boolean, default: false }
 });
