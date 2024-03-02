@@ -60,6 +60,7 @@ export class KnightsService {
 
     public toResponse(knightDto: KnightDto): KnightResponseDto {
         return {
+            _id: knightDto._id,
             nome: knightDto.name,
             idade: calculateAge(knightDto.birthday),
             armas: knightDto.weapons.length,

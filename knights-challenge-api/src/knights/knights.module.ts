@@ -8,7 +8,7 @@ import { knightSchema } from 'src/mongo/schemas/knight.schema';
 @Module({
   controllers: [KnightsController],
   providers: [KnightsService,KnightRepository],
-  imports: [MongooseModule.forRoot('mongodb://localhost/knights'),
+  imports: [MongooseModule.forRoot('mongodb://mongo/knights'),
   MongooseModule.forFeature([
     { name: 'knight', schema: knightSchema }
   ])],
