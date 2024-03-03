@@ -7,12 +7,15 @@
     <b-table striped hover :items="processedItems" :fields="fields">
       <template v-slot:cell(actions)="data">
         <b-button variant="primary" @click="handleClick(data.item, 'edit')">Editar</b-button>
-        <b-button variant="danger" @click="handleClick(data.item._id, 'delete')">Deletar</b-button>
+        <b-button variant="danger" @click="handleClick(data.item, 'delete')">Deletar</b-button>
       </template>
     </b-table>
-    <b-modal id="modal-confirm-delete" title="Confirmar Exclusão" @ok="confirmDelete">
-      Você tem certeza que deseja excluir este item?
-    </b-modal>
+
+    
+    <div>
+  
+</div>
+
   </div>
 </template>
 
@@ -58,21 +61,45 @@ export default {
       }
     },
 
-    async handleClick(id, action) {
-      console.log(action, id);
+    async handleClick(item, action) {
+      console.log(action, item);
 
       if (action === 'delete') {
-        this.itemToDelete = id;
-        this.$bvModal.show('modal-confirm-delete');        
+        this.itemToDelete = item._id;
+        this.confirmDelete();        
+      }
+
+      if (action === 'edit') {
+        const newNickname = window.prompt('Digite o novo apelido', item.apelido);
+        if (newNickname !== null) {
+          await this.editKnight(item._id, newNickname);
+        }
       }
       
     },
 
     async confirmDelete() {
-      await this.deleteKnight(this.itemToDelete);
-      this.itemToDelete = null;
+      if (window.confirm('Você tem certeza que deseja excluir este item?')) {
+        await this.deleteKnight(this.itemToDelete);
+        this.itemToDelete = null;
+      }
     },
-
+    async editKnight(id, newNickname) {
+      try {
+        const response = await fetch(`http://localhost:3000/knights/${id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ nickname: newNickname }),
+        });
+        const data = await response.json();
+        console.log(data);
+        this.getKnights();
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async getKnights() {
       try {
         const response = await fetch('http://localhost:3000/knights');
@@ -91,6 +118,10 @@ export default {
 }
 </script>
 <style scoped>
+.container {
+  margin-bottom: 100px;
+  min-height: 250px;
+}
 .b-form-checkbox {
   width: 20px;
   height: 20px;
