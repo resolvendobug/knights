@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { KnightDto } from '../Dto/knights.dto';
-import { KnightRepository } from 'src/mongo/repository/knight.repository';
+import { KnightRepository } from '../../mongo/repository/knight.repository';
 import { UpdateNicknameDto } from '../Dto/updateNickname.dto';
 import { Knight } from 'src/mongo/interfaces/knight.interface';
 import { WeaponDto } from '../Dto/weapon.dto';
