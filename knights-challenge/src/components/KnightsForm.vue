@@ -19,50 +19,40 @@
       </b-row>
 
       <b-row>
-            <b-col>
-              <b-form-group
-                id="labelarma1"
-                label="Arma esquerda:"
-                label-for="arma"
-              >
-                <b-img
-                  v-for="(image, index) in weaponImages"
-                  :key="index"
-                  :src="image"
-                  width="75"
-                  height="75"
-                  rounded
-                  mr-1
-                  alt="Image 1"
-                  @click="selectWeaponEsquerda(index)"
-                  :class="{ 'selected-image': selectedWeaponEsquerda === index }"
-                ></b-img>
-              </b-form-group>
-            </b-col>
+        <b-col>
+          <b-form-group id="labelarma1" label="Arma esquerda:" label-for="arma">
+            <b-img
+              v-for="(image, index) in weaponImages"
+              :key="index"
+              :src="image"
+              width="75"
+              height="75"
+              rounded
+              mr-1
+              alt="Image 1"
+              @click="selectWeaponEsquerda(index)"
+              :class="{ 'selected-image': selectedWeaponEsquerda === index }"
+            ></b-img>
+          </b-form-group>
+        </b-col>
 
-            <b-col>
-              <b-form-group
-                id="labelarma1"
-                label="Arma direita:"
-                label-for="arma"
-              >
-                <b-img
-                  v-for="(image, index) in weaponImages"
-                  :key="index"
-                  :src="image"
-                  width="75"
-                  height="75"
-                  rounded
-                  mr-1
-                  alt="Image 1"
-                  @click="selectWeaponDireita(index)"
-                  :class="{ 'selected-image': selectedWeaponDireita === index }"
-                ></b-img>
-              </b-form-group>
-            </b-col>
-          </b-row>
-
-
+        <b-col>
+          <b-form-group id="labelarma1" label="Arma direita:" label-for="arma">
+            <b-img
+              v-for="(image, index) in weaponImages"
+              :key="index"
+              :src="image"
+              width="75"
+              height="75"
+              rounded
+              mr-1
+              alt="Image 1"
+              @click="selectWeaponDireita(index)"
+              :class="{ 'selected-image': selectedWeaponDireita === index }"
+            ></b-img>
+          </b-form-group>
+        </b-col>
+      </b-row>
     </b-form-group>
     <b-row>
       <b-col>
@@ -85,15 +75,76 @@
               required
             ></b-form-input>
           </b-form-group>
-          
-
-          <b-form-checkbox> </b-form-checkbox>
 
           <b-button type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
       </b-col>
-      <b-col> {{ character }}</b-col>
+      <b-col>
+        <b-list-group>
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+          Nome : {{ character.nome }}
+            
+          </b-list-group-item>
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+          Apelido : {{ character.apelido }}
+            
+          </b-list-group-item>
+
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+          Idade : {{ calculateAge(character.birthday) }} anos            
+          </b-list-group-item>
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+          strength : {{ character.attributes.strength }}             
+          </b-list-group-item>
+
+            <b-list-group-item
+                class="d-flex justify-content-between align-items-center"
+            >
+                dexterity : {{ character.attributes.dexterity }} 
+            </b-list-group-item>
+
+            <b-list-group-item
+                class="d-flex justify-content-between align-items-center"
+            >
+                constitution : {{ character.attributes.constitution }}
+            </b-list-group-item>
+
+            <b-list-group-item
+                class="d-flex justify-content-between align-items-center"
+            >
+                intelligence : {{ character.attributes.intelligence }}
+            </b-list-group-item>
+
+            <b-list-group-item
+                class="d-flex justify-content-between align-items-center"
+            >
+                wisdom : {{ character.attributes.wisdom }}
+            </b-list-group-item>
+
+            <b-list-group-item
+                class="d-flex justify-content-between align-items-center"
+            >
+                charisma : {{ character.attributes.charisma }}
+            </b-list-group-item>
+
+            <b-list-group-item
+                class="d-flex justify-content-between align-items-center"
+            >
+                Atributo Chave : {{ character.keyAttribute }}
+            </b-list-group-item>
+            
+        </b-list-group>
+        {{ character }} {{ calculateAge(character.birthday) }}
+      </b-col>
     </b-row>
   </div>
 </template>
@@ -106,6 +157,7 @@ export default {
       character: {
         nome: null,
         apelido: null,
+        birthday: null,
         attributes: {
           strength: 0,
           dexterity: 0,
@@ -151,6 +203,16 @@ export default {
     };
   },
   methods: {
+    calculateAge(birthdate) {
+      const dob = new Date(birthdate);
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const m = today.getMonth() - dob.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+      return age;
+    },
     selectClassesImage(index) {
       this.selectedClassesImage = index;
       switch (index) {
@@ -163,6 +225,7 @@ export default {
             wisdom: 10,
             charisma: 10,
           };
+          this.character.birthday = new Date("1990-01-01");
           this.character.keyAttribute = "dexterity";
           break;
         case 1: // Bárbaro
@@ -174,6 +237,7 @@ export default {
             wisdom: 10,
             charisma: 10,
           };
+          this.character.birthday = new Date("1980-11-21");
           this.character.keyAttribute = "strength";
           break;
         case 2: // Curandeiro
@@ -185,6 +249,7 @@ export default {
             wisdom: 20,
             charisma: 15,
           };
+          this.character.birthday = new Date("2000-04-12");
           this.character.keyAttribute = "wisdom";
           break;
         case 3: // Mago
@@ -196,6 +261,7 @@ export default {
             wisdom: 15,
             charisma: 10,
           };
+          this.character.birthday = new Date("1965-05-28");
           this.character.keyAttribute = "intelligence";
           break;
         case 4: // Monge
@@ -207,6 +273,7 @@ export default {
             wisdom: 15,
             charisma: 10,
           };
+          this.character.birthday = new Date("1967-04-07");
           this.character.keyAttribute = "constitution";
           break;
         default:
@@ -339,5 +406,10 @@ img {
 
 .center-text {
   text-align: center;
+}
+
+.container {
+  margin-bottom: 100px;
+  min-height: 250px;
 }
 </style>
