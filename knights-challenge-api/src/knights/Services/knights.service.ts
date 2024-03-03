@@ -62,6 +62,7 @@ export class KnightsService {
         return {
             _id: knightDto._id,
             nome: knightDto.name,
+            apelido: knightDto.nickname,
             idade: calculateAge(knightDto.birthday),
             armas: knightDto.weapons.length,
             atributo: knightDto.keyAttribute,
