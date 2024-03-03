@@ -47,7 +47,7 @@ export class KnightsService {
 
     private toKnightDto(knight: Knight): KnightDto {
         return {
-            _id: knight._id.toString(),
+            _id: knight._id?.toString(),
             name: knight.name,
             nickname: knight.nickname,
             birthday: knight.birthday,
