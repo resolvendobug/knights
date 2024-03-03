@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <AppMessage :msg="msg" v-show="msg"  />
     <div class="d-flex align-items-center mb-3">
       <b-form-checkbox v-model="isHeroesChecked" class="mr-2" style="border: 1px solid #dc3545; background-color: #f1aeb5;"></b-form-checkbox>
       <span>Hall of Heroes</span>
@@ -21,10 +22,12 @@
 </template>
 
 <script>
+import AppMessage from './AppMessage.vue';
 export default {
   name: 'AppTable',
   data() {
     return {
+      msg: "",
       urlApi: process.env.VUE_APP_API_URL,
       items: [],
       isHeroesChecked: false,
@@ -62,7 +65,18 @@ export default {
           method: 'DELETE'
         });
         const data = await response.json();
-        console.log(data);
+        
+        if (data.error) {
+          this.msg = data.error;
+          return;
+        }
+
+        this.msg = "Knight foi para o Hall of Heroes com sucesso!";
+
+        setTimeout(() => {
+          this.msg = null;
+        }, 3000);
+
         this.getKnights();
       } catch (error) {
         console.error(error);
@@ -103,7 +117,18 @@ export default {
           body: JSON.stringify({ nickname: newNickname }),
         });
         const data = await response.json();
-        console.log(data);
+        
+        if (data.error) {
+          this.msg = data.error;
+          return;
+        }
+
+        this.msg = "Apelido alterado com sucesso!";
+
+        setTimeout(() => {
+          this.msg = null;
+        }, 3000);
+
         this.getKnights();
       } catch (error) {
         console.error(error);
@@ -122,6 +147,9 @@ export default {
         console.error(error);
       }
     }
+  },
+  components: {
+    AppMessage
   },
   mounted() {
     this.getKnights();

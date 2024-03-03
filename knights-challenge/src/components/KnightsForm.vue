@@ -411,6 +411,11 @@ export default {
       });
       const res = await req.json();
       
+      if (res.error) {
+        this.msg = `Erro ao criar personagem: ${res.error}`;
+        return;
+      }
+
       this.msg = `Personagem ${res.name}, criado com sucesso `;
       
       setTimeout(() => {
