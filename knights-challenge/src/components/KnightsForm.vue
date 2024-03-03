@@ -78,8 +78,11 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="primary">Submit</b-button>
-          <b-button type="reset" variant="danger">Reset</b-button>
+          <b-form-group>
+          <b-button type="submit" variant="warning">Submit</b-button>
+          &nbsp;
+          <b-button type="reset" variant="outline-danger">Reset</b-button>
+        </b-form-group>
         </b-form>
       </b-col>
       <b-col>
@@ -460,10 +463,14 @@ export default {
 </script>
   <style scoped>
 .selected-image {
-  border: 2px solid red;
+  border: 6px solid red;
 }
 img {
   margin: 10px;
+  transition: transform .2s ease;
+}
+img:hover {
+  transform: scale(1.1);
 }
 
 .center-text {

@@ -2,12 +2,13 @@
   <div class="container">
     <div class="d-flex align-items-center mb-3">
       <b-form-checkbox v-model="isHeroesChecked" class="mr-2" style="border: 1px solid #dc3545; background-color: #f1aeb5;"></b-form-checkbox>
-      <span>Heroes</span>
+      <span>Hall of Heroes</span>
     </div>
     <b-table striped hover :items="processedItems" :fields="fields">
       <template v-slot:cell(actions)="data">
-        <b-button variant="primary" @click="handleClick(data.item, 'edit')">Editar</b-button>
-        <b-button variant="danger" @click="handleClick(data.item, 'delete')">Deletar</b-button>
+        <b-button variant="warning" @click="handleClick(data.item, 'edit')">Alterar Apelido</b-button>
+        &nbsp;
+        <b-button v-show="!data.item.isHeroes" variant="outline-danger" @click="handleClick(data.item, 'delete')">Hall of Heroes</b-button>
       </template>
     </b-table>
 
@@ -85,7 +86,7 @@ export default {
     },
 
     async confirmDelete() {
-      if (window.confirm('Você tem certeza que deseja excluir este item?')) {
+      if (window.confirm('Você tem certeza que deseja entrar para o Hall of Heroes?')) {
         await this.deleteKnight(this.itemToDelete);
         this.itemToDelete = null;
       }

@@ -24,12 +24,12 @@ export default {
 </script>
 
 <style>
- * {
+  * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Helvetica';
-  
+  font-family: 'IM Fell English', serif;
+  font-size: 19px;
  }
 
  .main-container{
