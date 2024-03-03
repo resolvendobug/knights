@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="d-flex align-items-center mb-3">
-      <b-form-checkbox class="mr-2" style="border: 1px solid #dc3545; background-color: #f1aeb5;"></b-form-checkbox>
+      <b-form-checkbox v-model="isHeroesChecked" class="mr-2" style="border: 1px solid #dc3545; background-color: #f1aeb5;"></b-form-checkbox>
       <span>Heroes</span>
     </div>
     <b-table striped hover :items="processedItems" :fields="fields">
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       items: [],
+      isHeroesChecked: false,
       fields: [
         { key: 'nome', label: 'Nome' },
         { key: 'apelido' , label: 'Apelido'},
@@ -46,6 +47,11 @@ export default {
         return item;
       });
     }
+  },
+  watch: {
+    isHeroesChecked() {
+      this.getKnights();
+    },
   },
   methods: {
     async deleteKnight(id) {
@@ -102,7 +108,8 @@ export default {
     },
     async getKnights() {
       try {
-        const response = await fetch('http://localhost:3000/knights');
+        const url = this.isHeroesChecked ? 'http://localhost:3000/knights?filter=heroes' : 'http://localhost:3000/knights';
+        const response = await fetch(url);
         const data = await response.json();
         console.log(data);
         this.items = data;
