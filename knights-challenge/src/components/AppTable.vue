@@ -25,6 +25,7 @@ export default {
   name: 'AppTable',
   data() {
     return {
+      urlApi: process.env.VUE_APP_API_URL,
       items: [],
       isHeroesChecked: false,
       fields: [
@@ -57,7 +58,7 @@ export default {
   methods: {
     async deleteKnight(id) {
       try {
-        const response = await fetch(`http://localhost:3000/knights/${id}`, {
+        const response = await fetch(`${this.urlApi}/knights/${id}`, {
           method: 'DELETE'
         });
         const data = await response.json();
@@ -93,7 +94,8 @@ export default {
     },
     async editKnight(id, newNickname) {
       try {
-        const response = await fetch(`http://localhost:3000/knights/${id}`, {
+        
+        const response = await fetch(`${this.urlApi}/knights/${id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -109,7 +111,8 @@ export default {
     },
     async getKnights() {
       try {
-        const url = this.isHeroesChecked ? 'http://localhost:3000/knights?filter=heroes' : 'http://localhost:3000/knights';
+        const url = this.isHeroesChecked ? 
+        `${this.urlApi}/knights?filter=heroes` : `${this.urlApi}/knights`;
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);

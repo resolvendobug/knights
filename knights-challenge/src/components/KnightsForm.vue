@@ -401,8 +401,8 @@ export default {
     async onSubmit(event) {
       event.preventDefault();
       const dataJson = JSON.stringify(this.character);
-
-      const req = await fetch("http://localhost:3000/knights", {
+      
+      const req = await fetch(`${process.env.VUE_APP_API_URL}/knights`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
