@@ -55,12 +55,14 @@
       </b-row>
     </b-form-group>
     <b-row>
+      
       <b-col>
+        <AppMessage :msg="msg" v-show="msg"  />
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
           <b-form-group id="labelnome" label="Nome:" label-for="nome">
             <b-form-input
               id="nome"
-              v-model="character.nome"
+              v-model="character.name"
               type="text"
               placeholder="Nome do Guerreiro"
               required
@@ -70,7 +72,7 @@
           <b-form-group id="labelapelido" label="Apelido" label-for="apelido">
             <b-form-input
               id="apelido"
-              v-model="character.apelido"
+              v-model="character.nickname"
               placeholder="Apelido do Guerreiro"
               required
             ></b-form-input>
@@ -85,78 +87,78 @@
           <b-list-group-item
             class="d-flex justify-content-between align-items-center"
           >
-          Nome : {{ character.nome }}
-            
+            Nome : {{ character.name }}
           </b-list-group-item>
           <b-list-group-item
             class="d-flex justify-content-between align-items-center"
           >
-          Apelido : {{ character.apelido }}
-            
+            Apelido : {{ character.nickname }}
           </b-list-group-item>
 
           <b-list-group-item
             class="d-flex justify-content-between align-items-center"
           >
-          Idade : {{ calculateAge(character.birthday) }} anos            
+            Idade : {{ calculateAge(character.birthday) }} anos
           </b-list-group-item>
           <b-list-group-item
             class="d-flex justify-content-between align-items-center"
           >
-          strength : {{ character.attributes.strength }}             
+            strength : {{ character.attributes.strength }}
           </b-list-group-item>
 
-            <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-            >
-                dexterity : {{ character.attributes.dexterity }} 
-            </b-list-group-item>
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+            dexterity : {{ character.attributes.dexterity }}
+          </b-list-group-item>
 
-            <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-            >
-                constitution : {{ character.attributes.constitution }}
-            </b-list-group-item>
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+            constitution : {{ character.attributes.constitution }}
+          </b-list-group-item>
 
-            <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-            >
-                intelligence : {{ character.attributes.intelligence }}
-            </b-list-group-item>
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+            intelligence : {{ character.attributes.intelligence }}
+          </b-list-group-item>
 
-            <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-            >
-                wisdom : {{ character.attributes.wisdom }}
-            </b-list-group-item>
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+            wisdom : {{ character.attributes.wisdom }}
+          </b-list-group-item>
 
-            <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-            >
-                charisma : {{ character.attributes.charisma }}
-            </b-list-group-item>
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+            charisma : {{ character.attributes.charisma }}
+          </b-list-group-item>
 
-            <b-list-group-item
-                class="d-flex justify-content-between align-items-center"
-            >
-                Atributo Chave : {{ character.keyAttribute }}
-            </b-list-group-item>
-            
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+            Atributo Chave : {{ character.keyAttribute }}
+          </b-list-group-item>
         </b-list-group>
-        {{ character }} {{ calculateAge(character.birthday) }}
+        
       </b-col>
     </b-row>
   </div>
 </template>
   
   <script>
+  import AppMessage from "./AppMessage.vue";
+
 export default {
   name: "KnightsForm",
   data() {
     return {
+      msg: "",
       character: {
-        nome: null,
-        apelido: null,
+        name: null,
+        nickname: null,
         birthday: null,
         attributes: {
           strength: 0,
@@ -176,6 +178,7 @@ export default {
         { image: "/img/classes/curandeiro.jpeg", name: "Curandeiro" },
         { image: "/img/classes/mago.jpeg", name: "Mago" },
         { image: "/img/classes/monge.jpeg", name: "Monge" },
+        { image: "/img/classes/crianca.jpeg", name: "Aprendiz"}
       ],
       selectedClassesImage: null,
       weaponImages: [
@@ -202,8 +205,12 @@ export default {
       show: true,
     };
   },
+  components: {
+    AppMessage,
+  },
   methods: {
     calculateAge(birthdate) {
+      if(birthdate === null) return 0;
       const dob = new Date(birthdate);
       const today = new Date();
       let age = today.getFullYear() - dob.getFullYear();
@@ -275,6 +282,18 @@ export default {
           };
           this.character.birthday = new Date("1967-04-07");
           this.character.keyAttribute = "constitution";
+          break;
+          case 5: // Aprendiz
+          this.character.attributes = {
+            strength: 2,
+            dexterity: 1,
+            constitution: 1,
+            intelligence: 1,
+            wisdom: 1,
+            charisma: 10,
+          };
+          this.character.birthday = new Date("2019-06-27");
+          this.character.keyAttribute = "charisma";
           break;
         default:
           this.character.attributes = {
@@ -376,22 +395,65 @@ export default {
           };
       }
     },
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault();
-      alert(JSON.stringify(this.form));
+      const dataJson = JSON.stringify(this.character);
+
+      const req = await fetch("http://localhost:3000/knights", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: dataJson,
+      });
+      const res = await req.json();
+      
+      this.msg = `Personagem ${res.name}, criado com sucesso `;
+      
+      setTimeout(() => {
+        this.msg = "";
+      }, 3000);
+        
+
+      this.character = {
+        name: null,
+        nickname: null,
+        birthday: null,
+        attributes: {
+          strength: 0,
+          dexterity: 0,
+          constitution: 0,
+          intelligence: 0,
+          wisdom: 0,
+          charisma: 0,
+        },
+        weapons: [],
+        keyAttribute: null,
+      };
+      this.selectedClassesImage = null;
+      this.selectedWeaponEsquerda = null;
+      this.selectedWeaponDireita = null;
     },
     onReset(event) {
       event.preventDefault();
-      // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
+      this.character = {
+        name: null,
+        nickname: null,
+        birthday: null,
+        attributes: {
+          strength: 0,
+          dexterity: 0,
+          constitution: 0,
+          intelligence: 0,
+          wisdom: 0,
+          charisma: 0,
+        },
+        weapons: [],
+        keyAttribute: null,
+      };
+      this.selectedClassesImage = null;
+      this.selectedWeaponEsquerda = null;
+      this.selectedWeaponDireita = null;
     },
   },
 };
