@@ -55,6 +55,7 @@ export class KnightsService {
             attributes: knight.attributes as AttributeDto,
             keyAttribute: knight.keyAttribute as AttributeKey,
             isHeroes: knight.isHeroes,
+            classe: knight.classe!
         };
     }
 
@@ -68,7 +69,8 @@ export class KnightsService {
             atributo: knightDto.keyAttribute,
             ataque: mod(knightDto.attributes, knightDto.keyAttribute) + modWeapon(knightDto.weapons),
             exp: calcularExp(calculateAge(knightDto.birthday)),
-            isHeroes: knightDto.isHeroes
+            isHeroes: knightDto.isHeroes,
+            classe: knightDto.classe!
         };
     }
 

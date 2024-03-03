@@ -10,6 +10,7 @@ export class KnightDto {
 
     _id?: string;
     isHeroes?: boolean;
+    classe?: string;
 
     @IsNotEmpty()
     @IsString()

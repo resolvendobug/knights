@@ -11,4 +11,5 @@ export interface Knight extends Document {
     readonly createdAt: Date;
     readonly updatedAt: Date;
     readonly isHeroes: boolean;
+    readonly classe: string;
 }

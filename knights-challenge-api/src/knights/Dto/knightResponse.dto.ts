@@ -10,6 +10,7 @@ export class KnightResponseDto {
     ataque: number;
     exp: number;
     isHeroes: boolean;
+    classe?: string;
 
 }
 
