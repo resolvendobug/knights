@@ -24,7 +24,8 @@ Este repositório contém um projeto que usa Docker Compose para orquestrar trê
     ```bash
     docker-compose up --build
 
-    Serviços
+## Serviços
+
 **Vue**
     Este serviço é responsável por executar uma aplicação Vue.js. Ele é construído usando o Dockerfile Dockerfile.vue no diretório ./knights-challenge. O serviço mapeia a porta 8080 do contêiner para a porta 8080 do host.
 
@@ -39,4 +40,4 @@ Este repositório contém um projeto que usa Docker Compose para orquestrar trê
 
 **Variáveis de Ambiente**
     A variável de ambiente CHOKIDAR_USEPOLLING é usada no serviço Vue para habilitar o polling, que é uma maneira de verificar as mudanças nos arquivos. Isso é útil em ambientes de desenvolvimento onde o sistema de arquivos não suporta eventos de mudança de arquivo.
-```
+
