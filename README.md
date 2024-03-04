@@ -69,3 +69,19 @@ Cada rota retorna uma resposta que segue a estrutura do `KnightDto` ou `KnightRe
 A documentação completa da API, incluindo detalhes sobre as rotas, parâmetros, respostas e exemplos, está disponível no Swagger. Você pode acessar a documentação da API no seguinte link:
 
 [Swagger API Documentation](http://ec2-54-225-42-82.compute-1.amazonaws.com:3000/api)
+
+## Front-end Vue.js
+
+O front-end do sistema é construído usando Vue.js, um framework JavaScript progressivo para construir interfaces de usuário.
+
+No front-end, você pode realizar as seguintes ações:
+
+- **Montar o seu Guerreiro**: Você pode criar um novo guerreiro fornecendo os detalhes necessários.
+
+- **Ver todos os guerreiros cadastrados**: Você pode ver uma lista de todos os guerreiros que foram cadastrados no sistema.
+
+- **Ver os detalhes de cada guerreiro**: Você pode clicar em um guerreiro específico na lista para ver mais detalhes sobre esse guerreiro.
+
+O front-end está disponível no seguinte link:
+
+[Vue.js Front-end](http://ec2-54-225-42-82.compute-1.amazonaws.com:8080/)
