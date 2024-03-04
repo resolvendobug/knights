@@ -10,6 +10,8 @@
         <b-button variant="warning" @click="handleClick(data.item, 'edit')">Alterar Apelido</b-button>
         &nbsp;
         <b-button v-show="!data.item.isHeroes" variant="outline-danger" @click="handleClick(data.item, 'delete')">Hall of Heroes</b-button>
+        &nbsp;
+        <b-button @click="goToDetails(data.item._id)">Detalhes</b-button>
       </template>
     </b-table>
 
@@ -59,6 +61,9 @@ export default {
     },
   },
   methods: {
+   goToDetails(id) {
+    this.$router.push({ name: 'Details', params: { id: id } });
+    },
     async deleteKnight(id) {
       try {
         const response = await fetch(`${this.urlApi}/knights/${id}`, {

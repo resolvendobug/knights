@@ -163,6 +163,7 @@ export default {
         name: null,
         nickname: null,
         birthday: null,
+        classe: null,
         attributes: {
           strength: 0,
           dexterity: 0,
@@ -235,6 +236,7 @@ export default {
             wisdom: 10,
             charisma: 10,
           };
+          this.character.classe = "Arqueiro";
           this.character.birthday = new Date("1990-01-01");
           this.character.keyAttribute = "dexterity";
           break;
@@ -247,6 +249,7 @@ export default {
             wisdom: 10,
             charisma: 10,
           };
+          this.character.classe = "Bárbaro";
           this.character.birthday = new Date("1980-11-21");
           this.character.keyAttribute = "strength";
           break;
@@ -259,6 +262,7 @@ export default {
             wisdom: 20,
             charisma: 15,
           };
+          this.character.classe = "Curandeiro";
           this.character.birthday = new Date("2000-04-12");
           this.character.keyAttribute = "wisdom";
           break;
@@ -271,6 +275,7 @@ export default {
             wisdom: 15,
             charisma: 10,
           };
+          this.character.classe = "Mago";
           this.character.birthday = new Date("1965-05-28");
           this.character.keyAttribute = "intelligence";
           break;
@@ -283,6 +288,7 @@ export default {
             wisdom: 15,
             charisma: 10,
           };
+          this.character.classe = "Monge";
           this.character.birthday = new Date("1967-04-07");
           this.character.keyAttribute = "constitution";
           break;
@@ -295,6 +301,7 @@ export default {
             wisdom: 1,
             charisma: 10,
           };
+          this.character.classe = "Aprendiz";
           this.character.birthday = new Date("2019-06-27");
           this.character.keyAttribute = "charisma";
           break;
@@ -427,6 +434,7 @@ export default {
         name: null,
         nickname: null,
         birthday: null,
+        classe: null,
         attributes: {
           strength: 0,
           dexterity: 0,
@@ -448,6 +456,7 @@ export default {
         name: null,
         nickname: null,
         birthday: null,
+        classe: null,
         attributes: {
           strength: 0,
           dexterity: 0,

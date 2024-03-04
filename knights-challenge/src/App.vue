@@ -16,7 +16,7 @@ export default {
   },
   data(){
     return{
-      logo_src: '/img/logo2.png',
+      logo_src: '/img/logo.png',
       app_name: 'Knights Challenge'
     }
   }

@@ -29,8 +29,8 @@ export default {
     margin-left: 0;
   }
   #logo{
-    width: 70px;
-    height: 70px;
+    width: 120px;
+    height: 120px;
   }
 
   #nav a{
