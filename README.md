@@ -39,4 +39,4 @@ Este repositório contém um projeto que usa Docker Compose para orquestrar trê
 
 **Variáveis de Ambiente**
     A variável de ambiente CHOKIDAR_USEPOLLING é usada no serviço Vue para habilitar o polling, que é uma maneira de verificar as mudanças nos arquivos. Isso é útil em ambientes de desenvolvimento onde o sistema de arquivos não suporta eventos de mudança de arquivo.
-
+```
