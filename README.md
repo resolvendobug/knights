@@ -41,3 +41,25 @@ Este repositório contém um projeto que usa Docker Compose para orquestrar trê
 **Variáveis de Ambiente**
     A variável de ambiente CHOKIDAR_USEPOLLING é usada no serviço Vue para habilitar o polling, que é uma maneira de verificar as mudanças nos arquivos. Isso é útil em ambientes de desenvolvimento onde o sistema de arquivos não suporta eventos de mudança de arquivo.
 
+
+## API NestJS
+
+A API do sistema é construída usando NestJS, um framework para construir aplicações Node.js eficientes, confiáveis e escaláveis.
+
+### Knights Controller
+
+O controlador `KnightsController` é responsável por lidar com as requisições HTTP relacionadas aos cavaleiros. Ele usa o serviço `KnightsService` para realizar operações de CRUD (Create, Read, Update, Delete) nos dados dos cavaleiros.
+
+Aqui estão as rotas disponíveis:
+
+- `GET /knights`: Retorna uma lista de todos os cavaleiros. Você pode adicionar um parâmetro de consulta `filter=heroes` para retornar apenas os cavaleiros que se tornaram heróis.
+
+- `GET /knights/:id`: Retorna os detalhes de um cavaleiro específico, onde `:id` é o ID do cavaleiro.
+
+- `POST /knights`: Cria um novo cavaleiro. O corpo da requisição deve ser um objeto que segue a estrutura do `KnightDto`.
+
+- `PATCH /knights/:id`: Atualiza o apelido de um cavaleiro específico, onde `:id` é o ID do cavaleiro. O corpo da requisição deve ser um objeto que segue a estrutura do `UpdateNicknameDto`.
+
+- `DELETE /knights/:id`: Remove um guerreiro. Esse guerreiro deve entrar no Hall of Heroes, onde `:id` é o ID do cavaleiro.
+
+Cada rota retorna uma resposta que segue a estrutura do `KnightDto` ou `KnightResponseDto`, dependendo da operação.
