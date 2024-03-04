@@ -63,3 +63,9 @@ Aqui estão as rotas disponíveis:
 - `DELETE /knights/:id`: Remove um guerreiro. Esse guerreiro deve entrar no Hall of Heroes, onde `:id` é o ID do cavaleiro.
 
 Cada rota retorna uma resposta que segue a estrutura do `KnightDto` ou `KnightResponseDto`, dependendo da operação.
+
+## Documentação da API
+
+A documentação completa da API, incluindo detalhes sobre as rotas, parâmetros, respostas e exemplos, está disponível no Swagger. Você pode acessar a documentação da API no seguinte link:
+
+[Swagger API Documentation](http://ec2-54-225-42-82.compute-1.amazonaws.com:3000/api)
