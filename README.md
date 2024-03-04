@@ -1,4 +1,7 @@
 # knights
+![Logo](http://ec2-54-225-42-82.compute-1.amazonaws.com:8080/img/logo.png)
+
+
 
 Este repositório contém um projeto que usa Docker Compose para orquestrar três serviços: `vue`, `nestjs` e `mongo`.
 
