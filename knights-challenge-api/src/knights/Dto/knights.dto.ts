@@ -12,6 +12,10 @@ export class KnightDto {
     isHeroes?: boolean;
     classe?: string;
 
+    ataque?: number;
+    exp?: number;
+    idade?: number;
+
     @IsNotEmpty()
     @IsString()
     @ApiProperty({ example: 'William Wallace' })

@@ -116,7 +116,7 @@ export default {
         ataque: 19,
         exp: 3271,
         idade: 40,
-        image: "/img/classes/arqueiro.jpeg", // substitua por uma URL de imagem real
+        image: "/img/classes/arqueiro.jpeg", 
       },
     };
   },
