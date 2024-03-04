@@ -4,13 +4,13 @@ module.exports = defineConfig({
 })
 
 /*
-module.exports = defineConfig({
-  transpileDependencies: true,
+module.exports = {
   devServer: {
     allowedHosts: [
       'ec2-54-225-42-82.compute-1.amazonaws.com'
     ],
-    public: 'http://ec2-54-225-42-82.compute-1.amazonaws.com:8080'
-  }
-})
+    host: '0.0.0.0',
+    port: 8080,
+  },
+}
 */
