@@ -184,14 +184,14 @@ export default {
         { image: "/img/classes/monge.jpeg", name: "Monge" },
         { image: "/img/classes/crianca.jpeg", name: "Aprendiz"}
       ],
-      selectedClassesImage: null,
+      selectedClassesImage: 0,
       weaponImages: [
         "/img/weapons/espada.jpeg",
         "/img/weapons/faca.jpeg",
         "/img/weapons/machado.jpeg",
         "/img/weapons/arco.jpeg",
       ],
-      selectedWeaponEsquerda: null,
+      selectedWeaponEsquerda: 0,
       selectedWeaponDireita: null,
       form: {
         email: "",
